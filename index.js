@@ -1,9 +1,27 @@
+// import necessary functions from firebase
+import {initializeApp} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
+import {getDatabase, ref, push} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+
+
 const addBtn = document.querySelector("#add-btn")
 const inputBtn = document.querySelector("#input-field")
 
+// databaseURL from firebase realtime database
+const appSettings = {
+    databaseURL: "https://realtime-database-81329-default-rtdb.firebaseio.com/"
+}
+
+// initialize our app to firebase
+const app = initializeApp(appSettings)
+const database = getDatabase(app)
+const itemsInDb = ref(database, "grocery-items") // ref needs to store our items to the firebase database
+
+
 addBtn.addEventListener("click", function () {
     if (inputBtn.value) {
-        console.log(inputBtn.value)
+        let inputValue = inputBtn.value
+        push(itemsInDb, inputValue) // push takes the input value and add it to the grocery items list
+        console.log(inputValue)
     }
 })
 

@@ -1,5 +1,55 @@
+:root{
+    --rubikFont: 'Rubik', sans-serif;
+    --bodyBg: #EEF0F4;
+    --inputBg: #cedefd;
+    --inputText: #12012e;
+    --textWhite: #FDFDFD;
+    --btnBg: #842fb4;
+
+}
+
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+}
+
+body{
+    background-color: var(--bodyBg);
+}
+#container{
+    width: 320px;
+    height: 75vh;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    border: 2px var(--btnBg) solid;
+    border-radius: 20px;
+    padding: 50px;
+}
+
+#cart-img{
+    width: 200px;
+    margin: 0 auto;
+}
+
+#input-field{
+    text-align: center;
+    color: var(--inputText);
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border: none;
+    background-color: var(--inputBg);
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+#add-btn{
+    text-align: center;
+    color: var(--textWhite);
+    padding: 15px;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--btnBg);
+    font-size: 20px;
 }
