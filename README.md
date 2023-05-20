@@ -1,0 +1,1 @@
+# grocery list is a mobile app built using HTML, CSS and JavaScript + Firebase.
