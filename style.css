@@ -1,6 +1,6 @@
 :root{
     --rubikFont: 'Rubik', sans-serif;
-    --bodyBg: #EEF0F4;
+    --bodyBg: #f7f0f9;
     --inputBg: #cedefd;
     --inputText: #12012e;
     --textWhite: #FDFDFD;
@@ -28,7 +28,7 @@ body{
 }
 
 #cart-img{
-    width: 200px;
+    width: 180px;
     margin: 0 auto;
 }
 
@@ -52,4 +52,5 @@ body{
     border: none;
     background-color: var(--btnBg);
     font-size: 20px;
+    margin-bottom: 10px;
 }
