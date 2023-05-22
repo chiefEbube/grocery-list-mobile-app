@@ -1,6 +1,6 @@
 // import necessary functions from firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
-import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
 
 const addBtn = document.querySelector("#add-btn")
@@ -17,27 +17,58 @@ const app = initializeApp(appSettings)
 const database = getDatabase(app)
 const itemsInDb = ref(database, "grocery-items") // ref needs to store our items to the firebase database
 
-function clearInputField(inputField) {
-    inputField.value = ""
-}
-
-function appendToList(listELement, listItem) {
-    listELement.innerHTML += `
-            <li>${listItem}</li>
-        `
-}
-
 addBtn.addEventListener("click", function () {
     if (inputBtn.value) {
         let inputValue = inputBtn.value
         push(itemsInDb, inputValue) // push takes the input value and add it to the grocery items list
-
-        appendToList(shoppingList, inputValue)
         clearInputField(inputBtn)
     }
 })
 
+// updating items in real time
 
+onValue(itemsInDb, function (snapshot) {
+    if (snapshot.exists()) {
+
+        let itemsArray = Object.entries(snapshot.val())
+        clearShoppingListEl()
+
+        for (let i = 0; i < itemsArray.length; i++) {
+            let currentItem = itemsArray[i]
+            let currentItemID = currentItem[0]
+            let currentItemValue = currentItem[1]
+
+            appendToList(currentItem)
+        }
+    }
+
+    else{
+        shoppingList.innerHTML = "Oops! There are no items here yet";
+
+    }
+})
+
+
+function clearShoppingListEl() {
+    shoppingList.innerHTML = ""
+}
+
+function clearInputField(inputField) {
+    inputField.value = ""
+}
+
+function appendToList(item) {
+    let itemID = item[0]
+    let itemValue = item[1]
+    let newElement = document.createElement("li")
+    newElement.textContent = itemValue
+
+    newElement.addEventListener("dblclick", function () {
+        let exactLocationOfItemInDB = ref(database, `grocery-items/${itemID}`)
+        remove(exactLocationOfItemInDB)
+    })
+    shoppingList.append(newElement)
+}
 
 
 

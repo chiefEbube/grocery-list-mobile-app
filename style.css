@@ -1,19 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;400;500;600;800;900&display=swap');
+
 :root{
-    --rubikFont: 'Rubik', sans-serif;
-    --bodyBg: #f7f0f9;
-    --inputBg: #cedefd;
+    --notoSansFont: 'Noto Sans', sans-serif;
+    --bodyBg: #d5e3fe;
+    --itemBg: #d6c4e0;
+    --inputBg: #d6c4e096;
     --inputText: #12012e;
     --textWhite: #FDFDFD;
     --btnBg: #842fb4;
+    --listBg: #d4dbea;
+
 
 }
 
 *{
     margin: 0;
     padding: 0;
+    user-select: none;
 }
 
 body{
+    font-family: var(--notoSansFont);
     background-color: var(--bodyBg);
 }
 #container{
@@ -22,7 +29,6 @@ body{
     margin: 20px auto;
     display: flex;
     flex-direction: column;
-    border: 2px var(--btnBg) solid;
     border-radius: 20px;
     padding: 50px;
 }
@@ -41,16 +47,52 @@ body{
     border: none;
     background-color: var(--inputBg);
     margin-bottom: 10px;
-    font-size: 20px;
+    font-size: 15px;
+    outline: none;
 }
 
 #add-btn{
     text-align: center;
     color: var(--textWhite);
-    padding: 15px;
+    padding: 13px;
     border-radius: 8px;
     border: none;
     background-color: var(--btnBg);
-    font-size: 20px;
+    font-size: 15px;
+    border: 2px solid var(--btnBg);
     margin-bottom: 10px;
+    font-weight: 600;
+}
+
+#add-btn:hover{
+    background-color: rgba(255, 255, 255, 0.398);
+    color: var(--btnBg);
+    cursor: pointer;
+}
+
+ul{
+    color: rgb(62, 61, 61);
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    list-style: none;
+}
+
+ul li{
+    background-color: var(--itemBg);
+    box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    flex-grow: 1;
+    color: var(--inputText);
+    font-weight: 600;
+    font-size: 15px;
+    text-align: center;
+}
+
+ul li:hover{
+    color: var(--textWhite);
+    background-color: var(--btnBg);
+    cursor: pointer;
 }
